@@ -1,6 +1,6 @@
-//IIFE-Wrap: please wrap all within it!
-var pokemonRepository = (function() {
+var pokemonRepository  = (function() {
 
+  //---------------------------GLOBAL VARIABLES---------------------------------
   //Declaring the repository array:
   var repository = [];
   //API-Adress:
@@ -8,45 +8,10 @@ var pokemonRepository = (function() {
   //Dialog window to hide/show:
   var $dialogContainer = $('#dialog-container');
   //details-menue var:
-  var $detailsMenue = document.querySelector('#details-menue');
+  var $detailsMenue = $('#details-menue');
   //favourite pokemon options:
   var favouritePokemon;
-
-  //show-details function:
-  function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(function() {
-    console.log(item);  //still useful as a test
-    //pokemonRepository.showModal(item);
-
-    //cleaning the previous details:
-    $detailsMenue.innerHTML = '';
-
-    var detailsWrapper = document.createElement('div');
-    detailsWrapper.classList.add('details-wrapper');
-
-    var nameElement = document.createElement('p');
-    nameElement.classList.add('name-p');
-    nameElement.innerText = item.name;
-
-    var imageElement = document.createElement('img');
-    imageElement.classList.add('details-image');
-    imageElement.setAttribute("src",item.imageUrl);
-
-    var heightElement = document.createElement('p');
-    heightElement.classList.add('details-p');
-    heightElement.innerText = 'height: '+item.height;
-
-    var typesElement = document.createElement('p');
-    typesElement.classList.add('details-p');
-    typesElement.innerText='type: '+ item.types.join(', ');
-
-    detailsWrapper.appendChild(nameElement);
-    detailsWrapper.appendChild(imageElement);
-    detailsWrapper.appendChild(typesElement);
-    detailsWrapper.appendChild(heightElement);
-    $detailsMenue.appendChild(detailsWrapper);
-    });
-  }
+  //----------------------------------------------------------------------------
 
   //get-All function:
   function getAll() {
@@ -75,102 +40,6 @@ var pokemonRepository = (function() {
     })
   }
 
-  function showDialog() {
-    //activating dialog buttons:
-    var $bulbasaurButton = document.querySelector('#bulbasaur-button');
-    var $charmanderButton = document.querySelector('#charmander-button');
-    var $squirtleButton = document.querySelector('#squirtle-button');
-
-    //changing value of favouritePokemon upon choice:
-    $bulbasaurButton.addEventListener('click', function(event) {
-      favouritePokemon = 0;
-      confirmChoice("bulbasaur");
-    });
-    $charmanderButton.addEventListener('click', function(event) {
-      favouritePokemon = 1;
-      confirmChoice("charmander");
-    });
-    $squirtleButton.addEventListener('click', function(event) {
-      favouritePokemon = 2;
-      confirmChoice("squirtle");
-    });
-  }
-
-  function confirmChoice(string) {
-    var $dialogButtons = document.querySelector('#dialog-buttons');
-    var $dialogText = document.querySelector('#dialog-text');
-    var $buttonImage = document.querySelector('#'+string);
-    var $buttonBulbasaur = document.querySelector('#bulbasaur');
-    var $buttonCharmander = document.querySelector('#charmander');
-    var $buttonSquirtle = document.querySelector('#squirtle');
-
-    //first remove color previous selection:
-    $buttonBulbasaur.classList.remove('bulbasaur-background');
-    $buttonCharmander.classList.remove('charmander-background');
-    $buttonSquirtle.classList.remove('squirtle-background');
-
-    //then activate the color selection of the current selected one:
-    $buttonImage.classList.add(string+'-background');
-
-    $dialogText.innerHTML = '';
-    $dialogText.innerHTML = 'you selected '+string;
-
-    $dialogButtons.classList.add('is-visible');
-    var $cancelButton = document.querySelector('#cancel-button');
-    var $confirmButton = document.querySelector('#confirm-button');
-    $cancelButton.addEventListener('click', function(event) {
-      //remove selection color from the selected one:
-      $buttonBulbasaur.classList.remove('bulbasaur-background');
-      $buttonCharmander.classList.remove('charmander-background');
-      $buttonSquirtle.classList.remove('squirtle-background');
-      //hide confirm/cancel buttons:
-      hideConfirmChoice();
-    });
-    $confirmButton.addEventListener('click', function(event) {
-      changeColor();
-    });
-  }
-
-  function hideConfirmChoice() {
-    var $dialogButtons = document.querySelector('#dialog-buttons');
-    var $dialogText = document.querySelector('#dialog-text');
-
-    $dialogButtons.classList.remove('is-visible');
-    $dialogText.innerHTML = '';
-    $dialogText.innerHTML = 'Choose your favourite pokemon:';
-  }
-
-  function changeColor() {
-    var $header = document.querySelector('header');
-    var $pokedex = document.querySelector('.pokedex');
-    var $title = document.querySelector('#title');
-
-    switch(favouritePokemon) {
-      case 0:
-      $header.classList.add('green-background');
-      $pokedex.classList.add('green-borders');
-      $title.innerHTML = 'Pokedex green';
-      break;
-
-      case 1:
-      $header.classList.add('red-background');
-      $pokedex.classList.add('red-borders');
-      $title.innerHTML = 'Pokedex red';
-      break;
-
-      case 2:
-      $header.classList.add('blue-background');
-      $pokedex.classList.add('blue-borders');
-      $title.innerHTML = 'Pokedex blue';
-      break;
-    }
-    hideDialog();
-  }
-
-  function hideDialog() {
-    $dialogContainer.classList.add('invisible');
-  }
-
   //load pokemon-details by clicking showDetailsButton:
   function loadDetails(item) {
     var url = item.detailsUrl;
@@ -186,47 +55,155 @@ var pokemonRepository = (function() {
     });
   }
 
-  //add-list-item function:
+  //show-details function:
+  function showDetails(item) {
+    pokemonRepository.loadDetails(item).then(function() {
+    console.log(item);  //TEST-Output
+    //cleaning the previous details:
+    $detailsMenue.empty();
+
+    var newDetailsWrapper = $('<div class="details-wrapper"></div>');
+    var newNameElement = $('<p class="name-p">name: '+item.name+'</p>');
+    var newImageElement = $('<img src='+item.imageUrl+' class="details-image">');
+    var newHeightElement = $('<p class="details-p">height: '+item.height+'</p>');
+    var newTypesElement = $('<p class="details-p">type: '+item.types+'</p>');
+
+    newDetailsWrapper.append(newNameElement);
+    newDetailsWrapper.append(newImageElement);
+    newDetailsWrapper.append(newTypesElement);
+    newDetailsWrapper.append(newHeightElement);
+    $detailsMenue.append(newDetailsWrapper);
+    });
+  }
+
   function addListItem(pokemon) {
-    var listItemText = document.createTextNode(pokemon.name);      //$p-text
-    var buttonText = document.createTextNode('show details');          //$details-button text
 
-    var $p = document.createElement('p');                              //creating elements on DOM
-    var $detailsButton = document.createElement('button');
-    var $li = document.createElement('li');
-    var $ul = document.querySelector('ul');
-
-    $detailsButton.classList.add('details-button');                   //adding styling to the elements
-    $li.classList.add('list-item');
-    $ul.classList.add('pokemon-list');
-
-    $detailsButton.appendChild(buttonText);                           //appending them to $pokemon-list
-    $p.appendChild(listItemText);
-    $li.appendChild($p);
-    $li.appendChild($detailsButton);
-    $ul.appendChild($li);
-
-    $detailsButton.addEventListener('click', function(event) {       //show-details function
+    var $unorderedList = $('ul');
+    //creating the ul-elements:
+    var newListIndex = $('<li class="list-item"></li>');
+    var newListIndexText = $('<p>'+pokemon.name+'</p>');
+    var newListIndexButton = $('<button class="details-button">show details</button>');
+    //appending them to $pokemon-list
+    newListIndex.append(newListIndexText);
+    newListIndex.append(newListIndexButton);
+    $unorderedList.append(newListIndex);
+    //adding show-details function
+    newListIndexButton.on('click', function(event) {
       showDetails(pokemon);
     });
   }
 
-  //return function:
-  return {
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem,
-    loadList: loadList,
-    loadDetails: loadDetails,
-    showDialog: showDialog
-  };
-})(); //IIFE-Wrap closes here!
+  function activateDialog() {
+    //activating dialog buttons:
+    var $bulbasaurButton = $('#bulbasaur-button');
+    var $charmanderButton = $('#charmander-button');
+    var $squirtleButton = $('#squirtle-button');
+    //changing value of var favouritePokemon upon choice:
+    $bulbasaurButton.on('click', function(event) {
+      favouritePokemon = 0;
+      confirmChoice("bulbasaur");
+    });
+    $charmanderButton.on('click', function(event) {
+      favouritePokemon = 1;
+      confirmChoice("charmander");
+    });
+    $squirtleButton.on('click', function(event) {
+      favouritePokemon = 2;
+      confirmChoice("squirtle");
+    });
+  }
 
-//loadList promise:
+  function confirmChoice(string) {
+    var $dialogButtons = $('#dialog-buttons');
+    var $dialogText = $('#dialog-text');
+    var $buttonImage = $('#'+string);
+    var $buttonBulbasaur = $('#bulbasaur');
+    var $buttonCharmander = $('#charmander');
+    var $buttonSquirtle = $('#squirtle');
+    //remove color previous selection:
+    $buttonBulbasaur.removeClass('bulbasaur-background');
+    $buttonCharmander.removeClass('charmander-background');
+    $buttonSquirtle.removeClass('squirtle-background');
+    //add the color selection of the current selected one:
+    $buttonImage.addClass(string+'-background');
+
+    $dialogText.html('');
+    $dialogText.html('you selected '+string);
+
+    $dialogButtons.addClass('is-visible');
+    var $cancelButton = $('#cancel-button');
+    var $confirmButton = $('#confirm-button');
+    $cancelButton.on('click', function(event) {
+      //remove selection color from the selected one:
+      $buttonBulbasaur.removeClass('bulbasaur-background');
+      $buttonCharmander.removeClass('charmander-background');
+      $buttonSquirtle.removeClass('squirtle-background');
+      //hide confirm/cancel buttons:
+      hideConfirmChoice();
+    });
+    $confirmButton.on('click', function(event) {
+      changeColor();
+    });
+  }
+
+  function hideConfirmChoice() {
+    var $dialogButtons = $('#dialog-buttons');
+    var $dialogText = $('#dialog-text');
+    //hide dialog buttons and updating dialog Text
+    $dialogButtons.removeClass('is-visible');
+    $dialogText.html('');
+    $dialogText.html('Choose your favourite pokemon:');
+  }
+
+  function changeColor() {
+    var $header = $('header');
+    var $pokedex = $('.pokedex');
+    var $title = $('#title');
+
+    switch(favouritePokemon) {
+      case 0:
+      $header.addClass('green-background');
+      $pokedex.addClass('green-borders');
+      $title.html('Pokedex green');
+      break;
+
+      case 1:
+      $header.addClass('red-background');
+      $pokedex.addClass('red-borders');
+      $title.html('Pokedex red');
+      break;
+
+      case 2:
+      $header.addClass('blue-background');
+      $pokedex.addClass('blue-borders');
+      $title.html('Pokedex blue');
+      break;
+    }
+    hideDialog();
+  }
+
+  function hideDialog() {
+    $dialogContainer.addClass('invisible');
+  }
+
+
+  //--------------------RETURNING ACCESSIBLE OBJECT METHODS---------------------
+
+  return {
+  getAll: getAll,
+  loadList: loadList,
+  loadDetails: loadDetails,
+  addListItem: addListItem,
+  activateDialog: activateDialog
+  };
+
+  //--------------------------------IIFE ENDS HERE------------------------------
+})();
+//loading the pokemon list from the database
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });
-//activating the dialog-buttons:
-pokemonRepository.showDialog();
+//activating dialog functions
+pokemonRepository.activateDialog();
