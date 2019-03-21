@@ -6,7 +6,7 @@ var pokemonRepository = (function() {
   //API-Adress:
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   //Dialog window to hide/show:
-  var $dialogContainer = document.querySelector('#dialog-container');
+  var $dialogContainer = $('#dialog-container');
   //details-menue var:
   var $detailsMenue = document.querySelector('#details-menue');
   //favourite pokemon options:
@@ -218,7 +218,7 @@ var pokemonRepository = (function() {
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
-    showDialog: showDialog,
+    showDialog: showDialog
   };
 })(); //IIFE-Wrap closes here!
 
