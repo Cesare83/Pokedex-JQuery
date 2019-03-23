@@ -1,14 +1,8 @@
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 /* -------------------------------GENERAL VARIABLES----------------------------- */
-:root {
-  --primary-grey: #bfbfbf;
-  --secondary-grey: #e6e6e6;
-  --primary-green: #008000;
-  --primary-red: #e60000;
-  --primary-blue: #0000e6;
-}
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -36,51 +30,64 @@ button {
 }
 
 #bulbasaur:hover {
-  background-color: var(--primary-green);
+  background-color: #008000;
+  -webkit-transition-property: background-color;
+  -o-transition-property: background-color;
   transition-property: background-color;
-  transition-duration: 0.8s;
+  -webkit-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
 }
 
 #charmander:hover {
-  background-color: var(--primary-red);
+  background-color: #e60000;
+  -webkit-transition-property: background-color;
+  -o-transition-property: background-color;
   transition-property: background-color;
-  transition-duration: 0.8s;
+  -webkit-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
 }
 
 #squirtle:hover {
-  background-color: var(--primary-blue);
+  background-color: #0000e6;
+  -webkit-transition-property: background-color;
+  -o-transition-property: background-color;
   transition-property: background-color;
-  transition-duration: 0.8s;
+  -webkit-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
 }
 
 .bulbasaur-background {
-  background-color: var(--primary-green);
+  background-color: #008000;
 }
 
 .charmander-background {
-  background-color: var(--primary-red);
+  background-color: #e60000;
 }
 
 .squirtle-background {
-  background-color: var(--primary-blue);
+  background-color: #0000e6;
 }
 
 .green-background {
-  background-color: var(--primary-green);
+  background-color: #008000;
   color: #fff;
 }
 
 .red-background {
-  background-color: var(--primary-red);
+  background-color: #e60000;
   color: #fff;
 }
 
 .blue-background {
-  background-color: var(--primary-blue);
+  background-color: #0000e6;
   color: #fff;
 }
 /* -----------------------------------DIALOG WINDOW---------------------------- */
 #dialog-container {
+  display: -ms-grid;
   display: grid;
   position: fixed;     /* essential for the overlap */
   top: 0;
@@ -92,7 +99,9 @@ button {
 }
 
 .dialog-wrapper {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-rows: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   margin: auto;
   padding: 3%;
@@ -110,7 +119,9 @@ button {
 }
 
 .dialog-img-wrapper {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
 }
@@ -123,7 +134,9 @@ button {
 }
 
 #dialog-buttons {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -149,7 +162,9 @@ button {
 }
 /* -----------------------------------PAGE------------------------------------- */
 .page {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-rows: 85vh 10vh;
   grid-template-rows: 85vh 10vh;
   width: 95vw;
   height: 95vh;
@@ -159,30 +174,34 @@ button {
 }
 
 .pokedex {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-rows: auto 90%;
   grid-template-rows: auto 90%;
   border-style: solid;
-  border-color: var(--primary-grey);
+  border-color: #bfbfbf;
   border-width: 5px;
 }
 
 .pokedex.green-borders {
-  border-color: var(--primary-green);
+  border-color: #008000;
 }
 
 .pokedex.red-borders {
-  border-color: var(--primary-red);
+  border-color: #e60000;
 }
 
 .pokedex.blue-borders {
-  border-color: var(--primary-blue);
+  border-color: #0000e6;
 }
 /* ---------------------------------HEADER------------------------------------- */
 header {
-  background-color: var(--primary-grey);
+  background-color: #bfbfbf;
 }
 
 .header-inner-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -197,20 +216,22 @@ header {
 }
 
 .favicon-red {
-  stroke: var(--primary-red);
+  stroke: #e60000;
 }
 
 .favicon-blue {
-  stroke: var(--primary-blue);
+  stroke: #0000e6;
 }
 
 .favicon-green {
-  stroke: var(--primary-green);
+  stroke: #008000;
 }
 /* -----------------------------------POKEMON MENUE---------------------------- */
 .menue {
   height: 100%;
+  display: -ms-grid;
   display: grid;
+  -ms-grid-rows: 50% 50%;
   grid-template-rows: 50% 50%;
 }
 
@@ -220,6 +241,7 @@ header {
 }
 
 #details-menue {                 /* DETAILS SCREEN */
+  display: -ms-grid;
   display: grid;
   height: 100%;
   background-color: #1a1a1a;
@@ -266,9 +288,11 @@ header {
 
 .list-item {
   width: 100%;
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  background-color: var(--secondary-grey);
+  background-color: #e6e6e6;
   padding: 0.1vmin 0 0.1vmin 2vmin;
   margin: 0 0 0.5vmin;
 }
@@ -279,12 +303,18 @@ header {
   color: white;
   background-color: #f7b733;
   margin: 1.2vmin 2vmin 1.2vmin auto;
+  -webkit-transition-property: background-color;
+  -o-transition-property: background-color;
   transition-property: background-color;
-  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+       -o-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 /* --------------------------------------FOOTER-------------------------------- */
 footer {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-rows: 50% 50%;
   grid-template-rows: 50% 50%;
   text-align: center;
 }
@@ -294,6 +324,7 @@ footer {
 }
 
 .footer-img-container {
+  display: -ms-grid;
   display: grid;
 }
 
@@ -314,15 +345,23 @@ footer {
   #cancel-button:hover {
     color: #ff3c1a;
     border-color: #ff3c1a;
+    -webkit-transition-property: color border-color;
+    -o-transition-property: color border-color;
     transition-property: color border-color;
-    transition-duration: 0.8s;
+    -webkit-transition-duration: 0.8s;
+         -o-transition-duration: 0.8s;
+            transition-duration: 0.8s;
   }
 
   #confirm-button:hover {
     color: #46d246;
     border-color: #46d246;
+    -webkit-transition-property: color border-color;
+    -o-transition-property: color border-color;
     transition-property: color border-color;
-    transition-duration: 0.8s;
+    -webkit-transition-duration: 0.8s;
+         -o-transition-duration: 0.8s;
+            transition-duration: 0.8s;
   }
 
   #confirm-button {
@@ -337,8 +376,20 @@ footer {
 
   .menue {
     height: 100%;
+    -ms-grid-rows: 100%;
     grid-template-rows: 100%;
+    -ms-grid-columns: 50% 50%;
     grid-template-columns: 50% 50%;
+  }
+
+  .menue > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+
+  .menue > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
   }
 
   .image-menue-wrapper {

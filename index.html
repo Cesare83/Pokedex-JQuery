@@ -7,7 +7,7 @@
   <title>Pokedex</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="dist/style.production.css">
 </head>
 
 <body>
@@ -34,8 +34,7 @@
         <div class="list-menue-wrapper">
           <div class="list-menue">
             <ul class="pokemon-list">
-              <!-- <li> added from JS with addListItem(pokemonItem). Static example below:
-              <li class="list-item"><p>Bulbasaur</p><button class="details-button" type="button">show details</button></li> -->
+              <!-- <li> added from JS with addListItem(pokemonItem) -->
             </ul>
           </div>
         </div>
@@ -54,15 +53,13 @@
       </div>
     </footer>
   </div>
-
   <div id="dialog-container">
-    
+    <!-- dialog window loaded from JS with showDialog() -->
   </div>
-
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <script src="js/scripts.js"></script>
+  <script src="dist/script.min.js"></script>
 </body>
 </html>
