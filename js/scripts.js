@@ -4,8 +4,9 @@ var pokemonRepository  = (function() {
   var repository = [];
   //API-Adress:
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  //Dialog window to hide/show:
+  //Dialog-variables to hide/show:
   var $dialogContainer = $('#dialog-container');
+  var $dialogText = $('#dialog-text');
   //details-menue var:
   var $detailsMenue = $('#details-menue');
   //favourite pokemon options:
@@ -105,7 +106,6 @@ var pokemonRepository  = (function() {
   }
 
   function showDialog() {
-    var $dialogContainer = $('#dialog-container');
     //create $dialogContainer elements
     var newDialogWrapper =$('<div class="dialog-wrapper"></div>');
     var newCenteredText =$('<div class="centered-text"></div>');
@@ -168,7 +168,6 @@ var pokemonRepository  = (function() {
   }
 
   function confirmChoice(string) {
-    var $dialogText = $('#dialog-text');
     var $buttonImage = $('#'+string);
     var $buttonBulbasaur = $('#bulbasaur');
     var $buttonCharmander = $('#charmander');
@@ -201,7 +200,6 @@ var pokemonRepository  = (function() {
 
   function hideConfirmChoice() {
     var $dialogButtons = $('#dialog-buttons');
-    var $dialogText = $('#dialog-text');
     //hide dialog buttons and updating dialog Text
     $dialogButtons.fadeOut(350);
     $dialogText.hide();
