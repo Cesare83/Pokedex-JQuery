@@ -99,7 +99,7 @@ var pokemonRepository  = (function() {
     newListIndex.append(newListIndexButton);
     $unorderedList.append(newListIndex);
     //add show-details function
-    newListIndexButton.on('click', function(event) {
+    newListIndexButton.on('click', function() {
       showDetails(pokemon);
     });
   }
@@ -150,17 +150,17 @@ var pokemonRepository  = (function() {
     //fadeIn:
     newDialogWrapper.fadeIn(700);
     //change value of var favouritePokemon upon choice:
-    newBulbasaurButton.on('click', function(event) {
+    newBulbasaurButton.on('click', function() {
       favouritePokemon = 0;
       confirmChoice('bulbasaur');
       newDialogButtons.fadeIn(700);
     });
-    newCharmanderButton.on('click', function(event) {
+    newCharmanderButton.on('click', function() {
       favouritePokemon = 1;
       confirmChoice('charmander');
       newDialogButtons.fadeIn(700);
     });
-    newSquirtleButton.on('click', function(event) {
+    newSquirtleButton.on('click', function() {
       favouritePokemon = 2;
       confirmChoice('squirtle');
       newDialogButtons.fadeIn(700);
@@ -186,7 +186,7 @@ var pokemonRepository  = (function() {
 
     var $cancelButton = $('#cancel-button');
     var $confirmButton = $('#confirm-button');
-    $cancelButton.on('click', function(event) {
+    $cancelButton.on('click', function() {
       //remove selection color from the selected one:
       $buttonBulbasaur.removeClass('bulbasaur-background');
       $buttonCharmander.removeClass('charmander-background');
@@ -194,7 +194,7 @@ var pokemonRepository  = (function() {
       //hide confirm/cancel buttons:
       hideConfirmChoice();
     });
-    $confirmButton.on('click', function(event) {
+    $confirmButton.on('click', function() {
       changeColor();
     });
   }
